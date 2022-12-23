@@ -1,4 +1,5 @@
 request = syn and syn.request or http_request
+local HttpService = game:GetService("HttpService")
 
 local function get(url)
     return request({Url = url, Method = "GET"})
@@ -16,12 +17,21 @@ local function urlEncode(text)
     return text
 end
 
-local BASE_URL = "192.168.2.12:8080"
+local BASE_URL = "http://192.168.2.12:8080"
 
 function addMessage(message)
-    local res = get(BASE_URL .. "/add_message/"..message)
+    local res = get(BASE_URL .. "/add_message/"..HttpService:UrlEncode(message))
     print(res.StatusCode)
-    consoleprint("Message sent to server 📤\n")
+    print("Message sent to server 📤")
 end
-local text = "That night was so horrible."
-addMessage(text)
+
+local LocalPlayer = game:GetService("Players").LocalPlayer
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+print("Go")
+ReplicatedStorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.OnClientEvent:Connect(function(obj)
+    local player = obj.FromSpeaker
+    local message =  obj.Message
+    if player ~= LocalPlayer.Name then
+        addMessage(message)
+    end
+end)
