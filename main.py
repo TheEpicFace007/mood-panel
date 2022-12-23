@@ -32,6 +32,7 @@ def reset_emotion():
 @app.route('/add_message/<message>')
 def add_message(message):
     emotion = text2emotion.get_emotion(message)
+    print("Message: ", message)
     print("Emotion of message: ", emotion)
     for key in emotions:
         emotions[key] +=  emotion[key]
