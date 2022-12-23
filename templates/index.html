@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion average in roblox</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <h1>Emottion average</h1>
+    <table class="avg">
+        <thead>
+            <tr>
+                <th>Emotion</th>
+                <th>Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for emotionKey, emotionValue in emotion.items() %}
+            <tr>
+                <td>{{ emotionKey }}</td>
+                <td>{{ emotionValue }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>
