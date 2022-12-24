@@ -27,7 +27,7 @@ end
 
 local LocalPlayer = game:GetService("Players").LocalPlayer
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-print("Go")
+print("Loaded chat emotion detector")
 ReplicatedStorage.DefaultChatSystemChatEvents.OnMessageDoneFiltering.OnClientEvent:Connect(function(obj)
     local player = obj.FromSpeaker
     local message =  obj.Message
