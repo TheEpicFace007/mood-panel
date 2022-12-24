@@ -38,6 +38,10 @@ def add_message(message):
         emotions[key] +=  emotion[key]
     return "Added Message"
 
+@app.route('/get_emotion')
+def get_emotion():
+    return jsonify(emotions)
+
 if __name__ == '__main__':
     ip = '192.168.2.12'
     app.run(ip, port=8080, debug=True)
